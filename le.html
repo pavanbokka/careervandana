@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color:grey;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: lightyel;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button.reset {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <center><h2>Survey Form</h2></center>
+
+    <form id="surveyForm">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" required>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" required>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" required>
+
+        <label for="country">Country:</label>
+        <select id="country" required>
+            <option value="usa">INDIA</option>
+            <option value="canada">CHINA</option>
+             <option value="canada">CANADA</option>
+             <option value="canada">GERMANY</option>
+             <option value="canada">SWITZERLAND</option>
+             <option value="canada">NORWAY</option>
+             <option value="canada">JAPAN</option>
+             <option value="canada">DENMARK</option>
+             <option value="canada">UNITED KINDOM</option>
+             <option value="canada">UNITED STATES OF AMERICA</option>
+             <option value="canada">ANDAMAN NICOBAR</option>
+              <option value="canada">NEPAL</option>
+             <option value="canada">PAKISTAN</option>
+            
+        </select>
+
+        <label>Gender:</label>
+        <input type="checkbox" id="male" value="Male">Male
+        <input type="checkbox" id="female" value="Female">Female
+
+        <label for="profession">Profession:</label>
+        <input type="text" id="profession" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+
+        <label for="mobile">Mobile Number:</label>
+        <input type="tel" id="mobile" pattern="[0-9]{10}" required>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+        <button type="button" class="reset" onclick="resetForm()">Reset</button>
+    </form>
+
+    <script>
+        function submitForm() {
+            // Get form values
+            let firstName = document.getElementById('firstName').value;
+            let lastName = document.getElementById('lastName').value;
+            let dob = document.getElementById('dob').value;
+            let country = document.getElementById('country').value;
+            let gender = document.querySelectorAll('input[type="checkbox"]:checked');
+            let profession = document.getElementById('profession').value;
+            let email = document.getElementById('email').value;
+            let mobile = document.getElementById('mobile').value;
+
+            // Check if all fields are filled
+            if (!firstName || !lastName || !dob || !country || gender.length === 0 || !profession || !email || !mobile) {
+                alert("Please fill in all the fields");
+                return;
+            }
+
+            // Prepare and display the result
+            let result = `First Name: ${firstName}\nLast Name: ${lastName}\nDate of Birth: ${dob}\nCountry: ${country}\nGender: `;
+            gender.forEach(g => result += g.value + " ");
+            result += `\nProfession: ${profession}\nEmail: ${email}\nMobile: ${mobile}`;
+
+            alert(result);
+
+            // Reset the form
+            resetForm();
+        }
+
+        function resetForm() {
+            document.getElementById('surveyForm').reset();
+        }
+    </script>
+
+</body>
+</html>
